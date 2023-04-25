@@ -2,17 +2,20 @@ package model;
 
 import com.google.common.hash.HashCode;
 import com.google.common.hash.Hashing;
+import io.quarkus.mongodb.panache.PanacheMongoEntity;
+import io.quarkus.mongodb.panache.common.MongoEntity;
+import org.bson.types.ObjectId;
 
 import java.nio.charset.StandardCharsets;
 
-public class Address {
-    private String id;
-    private String street;
-    private String city;
-    private String state;
-    private String country;
-    private String zip;
-    private String hash;
+public class Address extends PanacheMongoEntity {
+    public ObjectId id;
+    public String street;
+    public String city;
+    public String state;
+    public String country;
+    public String zip;
+    public String hash;
 
     public Address(String street, String city, String state, String country, String zip) {
         this.street = street;
@@ -26,33 +29,5 @@ public class Address {
     private void setHash() {
         String hashValues = (new StringBuffer()).append(street).append(city).append(state).append(country).append(zip).toString();
         this.hash = Hashing.sha256().hashString(hashValues, StandardCharsets.UTF_8).toString();
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public String getZip() {
-        return zip;
-    }
-
-    public String getHash() {
-        return hash;
-    }
-
-    public String getId() {
-        return id;
     }
 }

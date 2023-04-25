@@ -1,3 +1,14 @@
 GET http://localhost:9001/address/{{id}}
 
 ###
+
+POST http://localhost:9001/address
+Content-Type: application/json
+
+{
+  "street": "Kloosterstraat 27A",
+  "city": "Emblem",
+  "state": "Antwerpen",
+  "country": "BE",
+  "zip": "2520"
+}
