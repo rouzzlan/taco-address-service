@@ -5,11 +5,11 @@ import com.google.common.hash.Hashing;
 import java.nio.charset.StandardCharsets;
 
 public class AddressSubmit {
-    private String street;
-    private String city;
-    private String state;
-    private String country;
-    private String zip;
+    private final String street;
+    private final String city;
+    private final String state;
+    private final String country;
+    private final String zip;
     private String hash;
 
     public AddressSubmit(String street, String city, String state, String country, String zip) {

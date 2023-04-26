@@ -5,7 +5,6 @@ import model.AddressSubmit;
 import service.AddressService;
 
 import javax.inject.Inject;
-import javax.json.Json;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;

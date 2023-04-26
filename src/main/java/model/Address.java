@@ -1,16 +1,8 @@
 package model;
 
-import com.google.common.hash.HashCode;
-import com.google.common.hash.Hashing;
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
-import io.quarkus.mongodb.panache.common.MongoEntity;
-import org.bson.types.ObjectId;
-
-import java.nio.charset.StandardCharsets;
-import java.util.Optional;
 
 public class Address extends PanacheMongoEntity {
-    public ObjectId id;
     public String street;
     public String city;
     public String state;
