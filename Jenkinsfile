@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        jdk 'graalvm-ee-java11-22.3.1'
+        jdk 'graalvm-ee-java17-22.3.1'
     }
     environment {
         DOCKER_TAG = 'harbour.739.net/library/address-service:0.0.1'
