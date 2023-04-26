@@ -2,6 +2,7 @@ package service;
 
 import model.Address;
 import model.AddressSubmit;
+import org.bson.types.ObjectId;
 import repo.AddressRepository;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -13,10 +14,9 @@ import java.util.List;
 public class AddressService {
     @Inject
     AddressRepository addressRepository;
-    private List<Address> addresses = new ArrayList<>();
 
     public Address getAddress(String id) {
-        return addresses.get(0);
+        return addressRepository.findById(new ObjectId(id));
     }
 
     public void persist(AddressSubmit address) {

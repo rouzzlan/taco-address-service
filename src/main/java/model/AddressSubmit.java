@@ -33,6 +33,7 @@ public class AddressSubmit {
         address.state = this.state;
         address.country = this.country;
         address.hash = this.hash;
+        address.zip = this.zip;
         return address;
     }
 
