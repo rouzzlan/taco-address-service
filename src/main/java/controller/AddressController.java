@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Optional;
 
 @Path("/address")
 @Produces(MediaType.APPLICATION_JSON)
@@ -16,9 +17,9 @@ public class AddressController {
     @Inject
     AddressService addressService;
     @GET
-    @Path("/{id}")
-    public Address getAddress(@PathParam("id") String id) {
-        return addressService.getAddress(id);
+    @Path("/{hash}")
+    public Optional<Address> getAddress(@PathParam("hash") String hash) {
+        return addressService.getAddress(hash);
     }
 
     @POST

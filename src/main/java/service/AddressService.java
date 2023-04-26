@@ -2,19 +2,19 @@ package service;
 
 import model.Address;
 import model.AddressSubmit;
-import org.bson.types.ObjectId;
 import repo.AddressRepository;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import java.util.Optional;
 
 @ApplicationScoped
 public class AddressService {
     @Inject
     AddressRepository addressRepository;
 
-    public Address getAddress(String id) {
-        return addressRepository.findById(new ObjectId(id));
+    public Optional<Address> getAddress(String hash) {
+        return addressRepository.findByHash(hash);
     }
 
     public void persist(AddressSubmit address) {
