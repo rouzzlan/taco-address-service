@@ -7,6 +7,7 @@ import io.quarkus.mongodb.panache.common.MongoEntity;
 import org.bson.types.ObjectId;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Optional;
 
 public class Address extends PanacheMongoEntity {
     public ObjectId id;
@@ -17,17 +18,16 @@ public class Address extends PanacheMongoEntity {
     public String zip;
     public String hash;
 
-    public Address(String street, String city, String state, String country, String zip) {
+    public Address(String street, String city, String state, String country, String zip, String hash) {
         this.street = street;
         this.city = city;
         this.state = state;
         this.country = country;
         this.zip = zip;
-        setHash();
+        this.hash = hash;
     }
 
-    private void setHash() {
-        String hashValues = (new StringBuffer()).append(street).append(city).append(state).append(country).append(zip).toString();
-        this.hash = Hashing.sha256().hashString(hashValues, StandardCharsets.UTF_8).toString();
+    public Address() {
     }
+
 }

@@ -1,6 +1,7 @@
 package controller;
 
 import model.Address;
+import model.AddressSubmit;
 import service.AddressService;
 
 import javax.inject.Inject;
@@ -22,8 +23,8 @@ public class AddressController {
     }
 
     @POST
-    public Response create(Address address) {
-        addressService.persist(address);
+    public Response create(AddressSubmit addressSubmit) {
+        addressService.persist(addressSubmit);
         return Response.status(201).build();
     }
 }
