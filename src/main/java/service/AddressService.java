@@ -1,6 +1,7 @@
 package service;
 
 import model.Address;
+import model.AddressHash;
 import model.AddressSubmit;
 import repo.AddressRepository;
 
@@ -17,8 +18,10 @@ public class AddressService {
         return addressRepository.findByHash(hash);
     }
 
-    public void persist(AddressSubmit address) {
+    public AddressHash persist(AddressSubmit address) {
+        AddressHash addressHash = new AddressHash(address.getHash());
         addressRepository.findByHash(address.getHash()).ifPresentOrElse(value -> System.out.println("is present"), () -> addressRepository.persist(address.toMongoAddress()));
+        return addressHash;
     }
 
 }

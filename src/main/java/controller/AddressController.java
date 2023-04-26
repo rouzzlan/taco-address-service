@@ -1,6 +1,7 @@
 package controller;
 
 import model.Address;
+import model.AddressHash;
 import model.AddressSubmit;
 import service.AddressService;
 
@@ -24,7 +25,7 @@ public class AddressController {
 
     @POST
     public Response create(AddressSubmit addressSubmit) {
-        addressService.persist(addressSubmit);
-        return Response.status(201).build();
+        AddressHash addressHash = addressService.persist(addressSubmit);
+        return Response.status(201).entity(addressHash).build();
     }
 }
