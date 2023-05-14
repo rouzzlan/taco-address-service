@@ -20,6 +20,12 @@ pipeline {
                     ./gradlew build -Dquarkus.package.type=native
                 '''
             }
+            post {
+                always {
+                    archiveArtifacts 'target/*'
+                }
+            }
+
         }
         stage('Docker Build') {
             when {
