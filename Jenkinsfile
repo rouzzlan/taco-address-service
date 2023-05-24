@@ -4,7 +4,7 @@ pipeline {
         jdk 'graalvm-ee-java17-22.3.1'
     }
     environment {
-        DOCKER_TAG = 'harbour.739.net/taco-cloud/address-service:0.0.2'
+        DOCKER_TAG = 'harbour.739.net/taco-cloud/address-service:0.0.3'
     }
     stages {
         stage('Setup') {
