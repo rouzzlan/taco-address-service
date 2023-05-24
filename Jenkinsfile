@@ -4,7 +4,7 @@ pipeline {
         jdk 'graalvm-ee-java17-22.3.1'
     }
     environment {
-        DOCKER_TAG = 'harbour.739.net/taco-cloud/address-service:0.0.2'
+        DOCKER_TAG = 'harbour.739.net/taco-cloud/address-service:0.0.3'
     }
     stages {
         stage('Setup') {
@@ -14,7 +14,20 @@ pipeline {
                 '''
             }
         }
-        stage('Build Docker') {
+        stage('Build') {
+            steps {
+                sh '''
+                    ./gradlew build -Dquarkus.package.type=native
+                '''
+            }
+            post {
+                always {
+                    archiveArtifacts 'build/*'
+                }
+            }
+
+        }
+        stage('Docker Build') {
             when {
             expression {
                 env.BRANCH_NAME == 'master'
@@ -22,8 +35,7 @@ pipeline {
             }
             steps {
                 sh '''
-                    ./gradlew build
-                    docker build -f src/main/docker/Dockerfile.jvm -t ${DOCKER_TAG} .
+                    docker build -f src/main/docker/Dockerfile.native -t ${DOCKER_TAG} .
                     docker login harbour.739.net -u="rouslan" -p="50m9FiD3"
                     docker push ${DOCKER_TAG}
                 '''
